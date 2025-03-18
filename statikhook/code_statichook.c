@@ -626,6 +626,8 @@ int main(int argc, char const *argv[])
         lc_segment_64 injseg_cmd = get_segment_by_name(resulting_file, "__INJT");
         for (int i = 0; i < strtoul(argv[3], NULL, 0); i++)
         {
+            CPT[i].orig_func_off = strtoll(argv[4 + i*2], NULL, 0);
+            
             uint32_t repl_instr = 0;
             if(fseek(resulting_file, CPT[i].orig_func_off, SEEK_SET)){printf("%s%d\n", "error in line: ", __LINE__); goto end;}
             if(fread((char*)&repl_instr, 1, 4, resulting_file) != 4){printf("%s%d\n", "error in line: ", __LINE__); goto end;}
@@ -633,8 +635,6 @@ int main(int argc, char const *argv[])
 
             uint32_t curr_jmp = get_arm64_rel_jmp(((injseg_cmd.vmaddr - CPT[i].orig_func_off + i*16) - 1) ^ 0xffffffff);
             CPT[i].jmp_instr = curr_jmp;
-            
-            CPT[i].orig_func_off = strtoll(argv[4 + i*2], NULL, 0);
         }
 
         if(fseek(resulting_file, injseg_cmd.file_off, SEEK_SET)){printf("%s%d\n", "error in line: ", __LINE__); goto end;}
