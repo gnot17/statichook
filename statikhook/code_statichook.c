@@ -665,10 +665,9 @@ int main(int argc, char const *argv[])
         fclose(resulting_file);
     }
 
-    
+    printf("\n\nGLOBAL DONE\n\n");
     end:
     if (initial_file) fclose(initial_file); 
     if (injected_file) fclose(injected_file);
-    printf("\n\nGLOBAL DONE\n\n");
     return 0;
 }
