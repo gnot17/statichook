@@ -27,4 +27,4 @@ Example of using the tool:
 
 **statichook** /path/to/modifying_file /path/to/inject_code_file **N** addr1 symbol1 addr2 symbol2 ... addrN symbolN
 
-**statichook** /user/gnot/desktop/modifying_file /user/gnot/desktop/inject_code_file **3** 0x1fe4544 **my_hook_func1** 0x1be3434 **my_hook_func2** 0x120b8a4 **CALL_ONLY**
+**statichook** /user/gnot/desktop/modifying_file /user/gnot/desktop/inject_code_file **3** 0x1fe4544 **_my_hook_func1** 0x1be3434 **_my_hook_func2** 0x120b8a4 **CALL_ONLY**
